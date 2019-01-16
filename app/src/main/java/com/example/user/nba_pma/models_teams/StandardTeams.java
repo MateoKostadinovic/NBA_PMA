@@ -1,8 +1,13 @@
 package com.example.user.nba_pma.models_teams;
 
-public class Vega {
+public class StandardTeams {
     public String fullName;
     public String teamId;
+
+    public StandardTeams(String fullName, String teamId) {
+        this.fullName = fullName;
+        this.teamId = teamId;
+    }
 
     public String getFullName() {
         return fullName;

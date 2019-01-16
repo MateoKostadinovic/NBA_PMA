@@ -8,6 +8,15 @@ public class East {
     public String gamesBehind;
     public String streak;
 
+    public East(String teamId, String win, String loss, String winPctV2, String gamesBehind, String streak) {
+        this.teamId = teamId;
+        this.win = win;
+        this.loss = loss;
+        this.winPctV2 = winPctV2;
+        this.gamesBehind = gamesBehind;
+        this.streak = streak;
+    }
+
     public String getTeamId() {
         return teamId;
     }

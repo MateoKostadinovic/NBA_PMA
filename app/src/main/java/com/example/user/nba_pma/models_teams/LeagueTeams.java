@@ -1,18 +1,18 @@
 package com.example.user.nba_pma.models_teams;
 import java.util.ArrayList;
-public class League {
-    public ArrayList<Standard> standard;
+public class LeagueTeams {
+    public ArrayList<StandardTeams> standardTeams;
     public ArrayList<Africa> africa;
     public ArrayList<Sacramento> sacramento;
-    public ArrayList<Vega> vegas;
+    public ArrayList<Vegas> vegas;
     public ArrayList<Utah> utah;
 
-    public ArrayList<Standard> getStandard() {
-        return standard;
+    public ArrayList<StandardTeams> getStandardTeams() {
+        return standardTeams;
     }
 
-    public void setStandard(ArrayList<Standard> standard) {
-        this.standard = standard;
+    public void setStandardTeams(ArrayList<StandardTeams> standardTeams) {
+        this.standardTeams = standardTeams;
     }
 
     public ArrayList<Africa> getAfrica() {
@@ -31,11 +31,11 @@ public class League {
         this.sacramento = sacramento;
     }
 
-    public ArrayList<Vega> getVegas() {
+    public ArrayList<Vegas> getVegas() {
         return vegas;
     }
 
-    public void setVegas(ArrayList<Vega> vegas) {
+    public void setVegas(ArrayList<Vegas> vegas) {
         this.vegas = vegas;
     }
 

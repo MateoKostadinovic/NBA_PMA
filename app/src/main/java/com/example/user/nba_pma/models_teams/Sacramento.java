@@ -4,6 +4,11 @@ public class Sacramento {
     public String fullName;
     public String teamId;
 
+    public Sacramento(String fullName, String teamId) {
+        this.fullName = fullName;
+        this.teamId = teamId;
+    }
+
     public String getFullName() {
         return fullName;
     }

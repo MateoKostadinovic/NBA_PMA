@@ -1,5 +1,7 @@
 package com.example.user.nba_pma.network;
 
+import android.util.Log;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -10,7 +12,7 @@ public class RetrofitManager {
     private RetrofitManager()
     {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://data.nba.net/10s")
+                .baseUrl("https://data.nba.net/10s/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -8,6 +8,11 @@ public class Utah {
         return fullName;
     }
 
+    public Utah(String fullName, String teamId) {
+        this.fullName = fullName;
+        this.teamId = teamId;
+    }
+
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }

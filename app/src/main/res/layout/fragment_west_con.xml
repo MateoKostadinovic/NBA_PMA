@@ -8,10 +8,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/text_view_id_west_con"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="testWest" />
+        <ListView
+            android:id="@+id/listViewWest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

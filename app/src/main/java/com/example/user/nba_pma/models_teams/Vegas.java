@@ -1,6 +1,6 @@
 package com.example.user.nba_pma.models_teams;
 
-public class Standard {
+public class Vegas {
     public String fullName;
     public String teamId;
 
@@ -14,6 +14,11 @@ public class Standard {
 
     public String getTeamId() {
         return teamId;
+    }
+
+    public Vegas(String fullName, String teamId) {
+        this.fullName = fullName;
+        this.teamId = teamId;
     }
 
     public void setTeamId(String teamId) {

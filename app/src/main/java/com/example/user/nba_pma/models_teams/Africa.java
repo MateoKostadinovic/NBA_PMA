@@ -12,6 +12,11 @@ public class Africa {
         this.fullName = fullName;
     }
 
+    public Africa(String fullName, String teamId) {
+        this.fullName = fullName;
+        this.teamId = teamId;
+    }
+
     public String getTeamId() {
         return teamId;
     }
