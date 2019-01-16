@@ -1,19 +1,51 @@
 package com.example.user.nba_pma;
 
-import android.support.v4.view.ViewPager;
+import android.support.design.widget.TabLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+
 import android.widget.TextView;
 
+import com.example.user.nba_pma.adapter.StandingsFragmentViewPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MainStandings extends AppCompatActivity {
-    ViewPager viewPagerStandings;
+    private ViewPager viewPagerStandings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_standings);
+
         viewPagerStandings = findViewById(R.id.viewPagerStandings);
-        
+
+        List<Integer> fragmentDataList=new ArrayList<>();
+        fragmentDataList.add(1);
+        fragmentDataList.add(2);
+
+        Collections.sort(fragmentDataList);
+        StandingsFragmentViewPagerAdapter adapter = new StandingsFragmentViewPagerAdapter(getSupportFragmentManager(),fragmentDataList);
+        viewPagerStandings.setAdapter(adapter);
     }
+
+
+
+
+
 }

@@ -5,8 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitManager {
     static private RetrofitManager instance;
-    private NbaApiTeams teams;
-    private NbaApiStandings standings;
+    private NbaApi api;
 
     private RetrofitManager()
     {
@@ -15,8 +14,7 @@ public class RetrofitManager {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        teams=retrofit.create(NbaApiTeams.class);
-        standings=retrofit.create(NbaApiStandings.class);
+        api=retrofit.create(NbaApi.class);
     }
 
     public static RetrofitManager getInstance()
@@ -28,13 +26,8 @@ public class RetrofitManager {
         return instance;
     }
 
-    public NbaApiTeams getTeams()
+    public NbaApi getApi()
     {
-        return teams;
-    }
-
-    public NbaApiStandings getStandings()
-    {
-        return standings;
+        return api;
     }
 }

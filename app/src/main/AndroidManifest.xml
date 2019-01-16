@@ -8,7 +8,6 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,7 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainStandings">
+        <activity
+            android:name=".MainStandings"
+            android:label="@string/title_activity_main_standings"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
