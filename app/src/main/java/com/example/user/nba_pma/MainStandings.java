@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.user.nba_pma.adapter.StandingsFragmentViewPagerAdapter;
+import com.example.user.nba_pma.fragments.EastConFragment;
+import com.example.user.nba_pma.fragments.WestConFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,18 +36,22 @@ public class MainStandings extends AppCompatActivity {
         setContentView(R.layout.activity_main_standings);
 
         viewPagerStandings = findViewById(R.id.viewPagerStandings);
+        setupViewPager(viewPagerStandings);
 
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPagerStandings);
+    }
+
+    private void setupViewPager(ViewPager viewPager)
+    {
         List<Integer> fragmentDataList=new ArrayList<>();
         fragmentDataList.add(1);
         fragmentDataList.add(2);
 
         Collections.sort(fragmentDataList);
         StandingsFragmentViewPagerAdapter adapter = new StandingsFragmentViewPagerAdapter(getSupportFragmentManager(),fragmentDataList);
+        adapter.addFragment(new WestConFragment(), "Eastern Conference");
+        adapter.addFragment(new WestConFragment(), "Western Conference");
         viewPagerStandings.setAdapter(adapter);
     }
-
-
-
-
-
 }

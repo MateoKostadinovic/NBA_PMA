@@ -12,6 +12,6 @@
             android:id="@+id/text_view_id_west_con"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="test" />
+            android:text="testWest" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
