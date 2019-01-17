@@ -1,5 +1,7 @@
 package com.example.user.nba_pma.models_standings;
 
+import android.support.annotation.NonNull;
+
 public class East {
     public String teamId;
     public String win;
@@ -63,5 +65,11 @@ public class East {
 
     public void setStreak(String streak) {
         this.streak = streak;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "ID: "+ teamId;
     }
 }

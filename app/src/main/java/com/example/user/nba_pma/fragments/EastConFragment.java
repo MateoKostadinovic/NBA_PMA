@@ -48,7 +48,7 @@ import retrofit2.Response;
     }
 
 
-
+        TextView textViewEast;
         ArrayList<StandardTeams> teamsStandard = new ArrayList<>();
         ArrayList<Africa> teamsAfrica = new ArrayList<>();
         ArrayList<Sacramento> teamsSacramento = new ArrayList<>();
@@ -62,6 +62,8 @@ import retrofit2.Response;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.fragment_east_con,container,false);
+        //textViewEast = (TextView)view.findViewById(R.id.textViewEast);
+
         ListView listView = (ListView)view.findViewById(R.id.listViewEast);
 
         String[][] content = {
@@ -163,12 +165,16 @@ import retrofit2.Response;
         callResponseTeamsStandings.enqueue(new Callback<StandingsResponse>() {
             @Override
             public void onResponse(Call<StandingsResponse> call, Response<StandingsResponse> response) {
+                String text;
                 if(response.isSuccessful() && response.body() != null)
                 {
                     League league = response.body().getLeague();
                     Standard standard = league.getStandard();
                     Conference conference = standard.getConference();
                     ArrayList<East> east = conference.getEast();
+
+                    text = "ima odgovora";
+
 
                     for(East oEastStandings : east)
                     {
@@ -178,8 +184,9 @@ import retrofit2.Response;
                 }
                 else
                 {
-                    setText("nista od toga");
+                    text = "nista od toga";
                 }
+                setText(text);
             }
 
             @Override
@@ -206,6 +213,6 @@ import retrofit2.Response;
 
     void setText(String text)
     {
-
+        //textViewEast.setText(text);
     }
 }
