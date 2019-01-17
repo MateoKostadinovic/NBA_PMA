@@ -1,5 +1,7 @@
 package com.example.user.nba_pma.models_teams;
 
+import android.support.annotation.NonNull;
+
 public class Sacramento {
     public String fullName;
     public String teamId;
@@ -23,5 +25,11 @@ public class Sacramento {
 
     public void setTeamId(String teamId) {
         this.teamId = teamId;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "ID TIMA: " + teamId;
     }
 }

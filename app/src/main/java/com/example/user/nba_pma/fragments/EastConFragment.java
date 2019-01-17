@@ -62,9 +62,9 @@ import retrofit2.Response;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.fragment_east_con,container,false);
-        //textViewEast = (TextView)view.findViewById(R.id.textViewEast);
+        textViewEast = (TextView)view.findViewById(R.id.textViewEast);
 
-        ListView listView = (ListView)view.findViewById(R.id.listViewEast);
+        /*ListView listView = (ListView)view.findViewById(R.id.listViewEast);
 
         String[][] content = {
                 {"Toronto", "733"},
@@ -92,7 +92,7 @@ import retrofit2.Response;
             String s = content[i][0] + " " + content[i][1];
             listViewAdapter.add(s);
         }
-        listView.setAdapter(listViewAdapter);
+        listView.setAdapter(listViewAdapter);*/
 
         //nesto za probu sa fiksnim poljima
         /*Log.d("iza","iza");
@@ -105,58 +105,52 @@ import retrofit2.Response;
         callResponseTeams.enqueue(new Callback<TeamsResponse>() {
             @Override
             public void onResponse(Call<TeamsResponse> call, Response<TeamsResponse> response) {
-                Log.d("response","response");
+                String textTeam;
                 if(response.isSuccessful() && response.body() != null)
                 {
                     LeagueTeams leagueTeams = response.body().getLeagueTeams();
-                    if(leagueTeams != null)
+                    /*ArrayList<StandardTeams> standardTeams = leagueTeams.getStandardTeams();//baca neki error da je null
+                    ArrayList<Africa> africaTeams = leagueTeams.getAfrica();
+                    ArrayList<Sacramento> sacramentoTeams = leagueTeams.getSacramento();
+                    ArrayList<Utah> utahTeams = leagueTeams.getUtah();
+                    ArrayList<Vegas> vegasTeams = leagueTeams.getVegas();
+
+                    textTeam = sacramentoTeams.toString();
+                    for(StandardTeams oStandardTeams : standardTeams)
                     {
-                        Log.d("usli","usli");
-                        ArrayList<StandardTeams> standardTeams = leagueTeams.getStandardTeams();//baca neki error da je null
-                        ArrayList<Africa> africaTeams = leagueTeams.getAfrica();
-                        ArrayList<Sacramento> sacramentoTeams = leagueTeams.getSacramento();
-                        ArrayList<Utah> utahTeams = leagueTeams.getUtah();
-                        ArrayList<Vegas> vegasTeams = leagueTeams.getVegas();
-
-                        for(StandardTeams oStandardTeams : standardTeams)
-                        {
-                            teamsStandard.add(new StandardTeams(oStandardTeams.getFullName(), oStandardTeams.getTeamId()));
-                        }
-
-                        for(Africa oAficaTeams : africaTeams)
-                        {
-                            teamsAfrica.add(new Africa(oAficaTeams.getFullName(), oAficaTeams.getTeamId()));
-                        }
-
-                        for(Sacramento oSacramentoTeams : sacramentoTeams)
-                        {
-                            teamsSacramento.add(new Sacramento(oSacramentoTeams.getFullName(), oSacramentoTeams.getTeamId()));
-                        }
-
-                        for(Utah oUtahTeams : utahTeams)
-                        {
-                            teamsUtah.add(new Utah(oUtahTeams.getFullName(), oUtahTeams.getTeamId()));
-                        }
-
-                        for(Vegas oVegasTeams : vegasTeams)
-                        {
-                            teamsVegas.add(new Vegas(oVegasTeams.getFullName(), oVegasTeams.getTeamId()));
-                        }
+                        teamsStandard.add(new StandardTeams(oStandardTeams.getFullName(), oStandardTeams.getTeamId()));
                     }
-                    else
+
+                    for(Africa oAficaTeams : africaTeams)
                     {
-                        Log.d("nsita","snjica");
+                        teamsAfrica.add(new Africa(oAficaTeams.getFullName(), oAficaTeams.getTeamId()));
                     }
+
+                    for(Sacramento oSacramentoTeams : sacramentoTeams)
+                    {
+                        teamsSacramento.add(new Sacramento(oSacramentoTeams.getFullName(), oSacramentoTeams.getTeamId()));
+                    }
+
+                    for(Utah oUtahTeams : utahTeams)
+                    {
+                        teamsUtah.add(new Utah(oUtahTeams.getFullName(), oUtahTeams.getTeamId()));
+                    }
+
+                    for(Vegas oVegasTeams : vegasTeams)
+                    {
+                        teamsVegas.add(new Vegas(oVegasTeams.getFullName(), oVegasTeams.getTeamId()));
+                    }*/
+
                 }
                 else
                 {
-                    setText("nista od toga");
+                    //textTeam = "nista od toga";
                 }
+                //setText(textTeam);
             }
 
             @Override
             public void onFailure(Call<TeamsResponse> call, Throwable t) {
-                Log.d("failure","failure");
                 setText("Doslo je do greske: " + t.getMessage());
             }
         });
@@ -172,8 +166,7 @@ import retrofit2.Response;
                     Standard standard = league.getStandard();
                     Conference conference = standard.getConference();
                     ArrayList<East> east = conference.getEast();
-
-                    text = "ima odgovora";
+                    text = east.toString();
 
 
                     for(East oEastStandings : east)
@@ -213,6 +206,6 @@ import retrofit2.Response;
 
     void setText(String text)
     {
-        //textViewEast.setText(text);
+        textViewEast.setText(text);
     }
 }
