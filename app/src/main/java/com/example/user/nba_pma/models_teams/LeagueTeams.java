@@ -1,49 +1,56 @@
 package com.example.user.nba_pma.models_teams;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 public class LeagueTeams {
-    public ArrayList<StandardTeams> standardTeams;
-    public ArrayList<Africa> africa;
-    public ArrayList<Sacramento> sacramento;
-    public ArrayList<Vegas> vegas;
-    public ArrayList<Utah> utah;
+    @SerializedName("standard")
+    public ArrayList<Team> standardTeams;
+    public ArrayList<Team> africa;
+    public ArrayList<Team> sacramento;
+    public ArrayList<Team> vegas;
+    public ArrayList<Team> utah;
 
-    public ArrayList<StandardTeams> getStandardTeams() {
+    public ArrayList<Team> getStandardTeams() {
         return standardTeams;
     }
 
-    public void setStandardTeams(ArrayList<StandardTeams> standardTeams) {
+    public void setStandardTeams(ArrayList<Team> standardTeams) {
         this.standardTeams = standardTeams;
     }
 
-    public ArrayList<Africa> getAfrica() {
+    public ArrayList<Team> getAfrica() {
         return africa;
     }
 
-    public void setAfrica(ArrayList<Africa> africa) {
+    public void setAfrica(ArrayList<Team> africa) {
         this.africa = africa;
     }
 
-    public ArrayList<Sacramento> getSacramento() {
+    public ArrayList<Team> getSacramento() {
         return sacramento;
     }
 
-    public void setSacramento(ArrayList<Sacramento> sacramento) {
+    public void setSacramento(ArrayList<Team> sacramento) {
         this.sacramento = sacramento;
     }
 
-    public ArrayList<Vegas> getVegas() {
+    public ArrayList<Team> getVegas() {
         return vegas;
     }
 
-    public void setVegas(ArrayList<Vegas> vegas) {
+    public void setVegas(ArrayList<Team> vegas) {
         this.vegas = vegas;
     }
 
-    public ArrayList<Utah> getUtah() {
+    public ArrayList<Team> getUtah() {
         return utah;
     }
 
-    public void setUtah(ArrayList<Utah> utah) {
+    public void setUtah(ArrayList<Team> utah) {
         this.utah = utah;
     }
+
+
+
+
 }

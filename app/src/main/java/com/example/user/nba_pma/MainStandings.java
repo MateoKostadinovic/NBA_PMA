@@ -50,7 +50,7 @@ public class MainStandings extends AppCompatActivity {
 
         Collections.sort(fragmentDataList);
         StandingsFragmentViewPagerAdapter adapter = new StandingsFragmentViewPagerAdapter(getSupportFragmentManager(),fragmentDataList);
-        adapter.addFragment(new WestConFragment(), "Eastern Conference");
+        adapter.addFragment(new EastConFragment(), "Eastern Conference");
         adapter.addFragment(new WestConFragment(), "Western Conference");
         viewPagerStandings.setAdapter(adapter);
     }
