@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.user.nba_pma.R;
+import com.example.user.nba_pma.models.StandingsModel;
 import com.example.user.nba_pma.models_standings.Conference;
 import com.example.user.nba_pma.models_standings.East;
 import com.example.user.nba_pma.models_standings.League;
@@ -46,10 +48,12 @@ import retrofit2.Response;
         ArrayList<Team> teamsVegas = new ArrayList<>();
 
         ArrayList<East> eastStandings = new ArrayList<>();
-        ArrayList<West> westStandings = new ArrayList<>();
 
         LeagueTeams leagueTeams;
         League league;
+
+        StandingsModel standingsModel;
+        ArrayList<StandingsModel> standingsModelsList = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -100,11 +104,14 @@ import retrofit2.Response;
                 String textTeam;
                 if(response.isSuccessful() && response.body() != null)
                 {
-                    leagueTeams = response.body().getLeagueTeams();
+                    //OVDJE UDE !!!!
+                    leagueTeams = response.body().getLeagueTeams(); //UVIJEK JE NULL !!!!!!!!!!
+                    Log.d("teams: ","teams");
+                    setUpData(leagueTeams,league);
                 }
                 else
                 {
-                    //textTeam = "nista od toga";
+                    textTeam = "nista od toga";
                 }
                 //setText(textTeam);
             }
@@ -123,6 +130,8 @@ import retrofit2.Response;
                 if(response.isSuccessful() && response.body() != null)
                 {
                     league = response.body().getLeague();
+                    Log.d("east: ","east");
+                    Log.d("east league ",league.getStandard().getConference().getEast().toString());
                     setUpData(leagueTeams,league);
                 }
                 else
@@ -159,6 +168,71 @@ import retrofit2.Response;
     }
     void setUpData(LeagueTeams leagueTeams, League league)
     {
-        //ovdje usporedit id, dodati novi model koji opisuje moj priakaz i u njega staviti te podatke.
+        Log.d("daTAf ","DATAf");
+        if(league == null)//fali jos: || leagueTeams == null
+        {
+            return;
+        }
+        else
+        {
+            eastStandings = league.getStandard().getConference().getEast();
+            /*teamsStandard = leagueTeams.getStandardTeams();
+            teamsAfrica = leagueTeams.getAfrica();
+            teamsSacramento = leagueTeams.getSacramento();
+            teamsUtah = leagueTeams.getUtah();
+            teamsVegas = leagueTeams.getVegas();*/
+            Log.d("daTA ","DATA");
+            for(East east : eastStandings)
+            {
+                Log.d("east win: ",east.getWinPctV2());
+                for(Team standard : teamsStandard)
+                {
+                    if(east.getTeamId() == standard.getTeamId())
+                    {
+                        standingsModel = new StandingsModel(standard.getTeamId(), standard.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
+                        standingsModelsList.add(standingsModel);
+                    }
+                }
+                for(Team africa : teamsAfrica)
+                {
+                    if(east.getTeamId() == africa.getTeamId())
+                    {
+                        standingsModel = new StandingsModel(africa.getTeamId(), africa.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
+                        standingsModelsList.add(standingsModel);
+                    }
+                }
+                for(Team sacramento : teamsSacramento)
+                {
+                    if(east.getTeamId() == sacramento.getTeamId())
+                    {
+                        standingsModel = new StandingsModel(sacramento.getTeamId(), sacramento.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
+                        standingsModelsList.add(standingsModel);
+                    }
+                }
+                for(Team utah : teamsUtah)
+                {
+                    if(east.getTeamId() == utah.getTeamId())
+                    {
+                        standingsModel = new StandingsModel(utah.getTeamId(), utah.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
+                        standingsModelsList.add(standingsModel);
+                    }
+                }
+                for(Team vegas : teamsVegas)
+                {
+                    if(east.getTeamId() == vegas.getTeamId())
+                    {
+                        standingsModel = new StandingsModel(vegas.getTeamId(), vegas.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
+                        standingsModelsList.add(standingsModel);
+                    }
+                }
+            }
+
+            Log.d("SIZE: ",String.format("value = %d" ,standingsModelsList.size()));
+            for (StandingsModel standings : standingsModelsList)
+            {
+                Log.i("Name: ", standings.getTeamName());
+            }
+        }
+
     }
 }
