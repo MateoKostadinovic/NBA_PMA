@@ -176,10 +176,11 @@ public class WestConFragment extends Fragment {
                 }
             }
         }
-        for (StandingsModel standings : standingsModelsList)
+        /*for (StandingsModel standings : standingsModelsList)
         {
             Log.i("Name: ", standings.getTeamName());
-        }
+        }*/
+        Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
         recyclerView = view.findViewById(R.id.recycler_view_west);
         RecyclerViewStandingsAdapter adapter = new RecyclerViewStandingsAdapter(getContext(), standingsModelsList);
         recyclerView.setAdapter(adapter);

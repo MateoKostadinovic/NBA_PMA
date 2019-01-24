@@ -65,6 +65,8 @@ import retrofit2.Response;
         super.onCreateView(inflater, container, savedInstanceState);
         final View view=inflater.inflate(R.layout.fragment_east_con,container,false);
 
+        Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
+
         Call<TeamsResponse> callResponseTeams = RetrofitManager.getInstance().getApi().getTeamsLeague();
         callResponseTeams.enqueue(new Callback<TeamsResponse>() {
             @Override
@@ -127,7 +129,6 @@ import retrofit2.Response;
     }
     void setUpData(LeagueTeams leagueTeams, League league, View view)
     {
-        Log.d("eastsetupdata","eastsetupdata");
         if(leagueTeams == null || league == null)
         {
             return;
@@ -140,8 +141,10 @@ import retrofit2.Response;
         teamsVegas = leagueTeams.getVegas();
 
         for(East east : eastStandings) {
+            Log.i("EAST_ID: ",east.getTeamId());
             for (Team standard : teamsStandard) {
                 if (east.getTeamId().equals(standard.getTeamId())) {
+                    Log.i("STANDARD_FULL_NAME: ",standard.getFullName());
                     standingsModel = new StandingsModel(standard.getTeamId(), standard.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
                     standingsModelsList.add(standingsModel);
                 }
@@ -170,11 +173,13 @@ import retrofit2.Response;
                     standingsModelsList.add(standingsModel);
                 }
             }
+            Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
         }
-        for (StandingsModel standings : standingsModelsList)
+        /*for (StandingsModel standings : standingsModelsList)
         {
             Log.i("Name: ", standings.getTeamName());
-        }
+        }*/
+        //Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
         recyclerView = view.findViewById(R.id.recycler_view_east);
         RecyclerViewStandingsAdapter adapter = new RecyclerViewStandingsAdapter(getContext(), standingsModelsList);
         recyclerView.setAdapter(adapter);
