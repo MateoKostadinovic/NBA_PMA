@@ -1,17 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_layout_west">
+
+    <TextView
+        android:id="@+id/textViewTimHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tim"
+        android:textStyle="bold|italic"
+        android:textColor="@color/customColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textViewWHeader"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/textViewWHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="W"
+        android:textStyle="bold|italic"
+        android:textColor="@color/customColor"
+        app:layout_constraintStart_toEndOf="@id/textViewTimHeader"
+        app:layout_constraintEnd_toStartOf="@id/textViewLHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/textViewLHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="L"
+        android:textStyle="bold|italic"
+        android:textColor="@color/customColor"
+        app:layout_constraintStart_toEndOf="@id/textViewWHeader"
+        app:layout_constraintEnd_toStartOf="@id/textViewGBHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/textViewGBHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GB"
+        android:textStyle="bold|italic"
+        android:textColor="@color/customColor"
+        app:layout_constraintStart_toEndOf="@id/textViewLHeader"
+        app:layout_constraintEnd_toStartOf="@id/textViewPCTHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
+        android:id="@+id/textViewPCTHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PCT"
+        android:textStyle="bold|italic"
+        android:textColor="@color/customColor"
+        app:layout_constraintStart_toEndOf="@id/textViewGBHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
-            android:id="@+id/listViewWest"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ListView>
-    </LinearLayout>
+        android:layout_height="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPCTHeader"
+        android:background="@color/customColor"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_west"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textViewTimHeader"></android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>

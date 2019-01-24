@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.user.nba_pma.R;
+import com.example.user.nba_pma.adapter.RecyclerViewStandingsAdapter;
 import com.example.user.nba_pma.models.StandingsModel;
 import com.example.user.nba_pma.models_standings.Conference;
 import com.example.user.nba_pma.models_standings.East;
@@ -54,6 +57,8 @@ public class WestConFragment extends Fragment {
     StandingsModel standingsModel;
     ArrayList<StandingsModel> standingsModelsList = new ArrayList<>();
 
+    RecyclerView recyclerView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,43 +67,9 @@ public class WestConFragment extends Fragment {
         standingsModelsList.add(new StandingsModel("1234","Test","0.721","0.223","72.1","13"));
         standingsModelsList.add(new StandingsModel("4321","Test2","0.563","0.423","56.3","13"));
 
-        ListView listView = (ListView) view.findViewById(R.id.listViewWest);
+        Log.d("VELICINA LISTE: ",String.format("value = %d" ,standingsModelsList.size()));
 
-        String[][] content = {
-                {"Golden State", "682"},
-                {"Denver", "674"},
-                {"Oklahoma City", "605"},
-                {"Houston", "581"},
-                {"Portland", "578"},
-                {"LA Clippers", "558"},
-                {"San Antonio", "556"},
-                {"Los Angeles Lakers", "533"},
-                {"Utah", "533"},
-                {"Sacramento", "523"},
-                {"Minnesota", "477"},
-                {"New Orleans", "477"},
-                {"Dallas", "465"},
-                {"Memphis", "442"},
-                {"Phoenix", "244"}
-        };
-
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1
-        );
-        for (StandingsModel standings : standingsModelsList) {
-            String s = "Naziv: " + standings.getTeamName() + " ID: " + standings.getTeamId();
-            listViewAdapter.add(s);
-        }
-        listView.setAdapter(listViewAdapter);
-
-        //nesto za probu sa fiksnim poljima
-        /*Log.d("iza","iza");
-        EastAdapter eastAdapter = new EastAdapter();
-        listView.setAdapter(eastAdapter);*/
-
-
-        Call<TeamsResponse> callResponseTeams = RetrofitManager.getInstance().getApi().getTeamsLeague();
+        /*Call<TeamsResponse> callResponseTeams = RetrofitManager.getInstance().getApi().getTeamsLeague();
         callResponseTeams.enqueue(new Callback<TeamsResponse>() {
             @Override
             public void onResponse(Call<TeamsResponse> call, Response<TeamsResponse> response) {
@@ -118,7 +89,7 @@ public class WestConFragment extends Fragment {
                 Log.d("failure", "failure");
                 setText("Doslo je do greske: " + t.getMessage());
             }
-        });
+        });*/
 
         Call<StandingsResponse> callResponseTeamsStandings = RetrofitManager.getInstance().getApi().getStandingsLeague();
         callResponseTeamsStandings.enqueue(new Callback<StandingsResponse>() {
@@ -138,15 +109,10 @@ public class WestConFragment extends Fragment {
             }
         });
 
-        /*ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1
-        );
-        for (StandingsModel standings : standingsModelsList) {
-            String s = standings.getTeamName();
-            listViewAdapter.add(s);
-        }
-        listView.setAdapter(listViewAdapter);*/
+        recyclerView = view.findViewById(R.id.recycler_view_west);
+        RecyclerViewStandingsAdapter adapter = new RecyclerViewStandingsAdapter(getContext(), standingsModelsList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }
