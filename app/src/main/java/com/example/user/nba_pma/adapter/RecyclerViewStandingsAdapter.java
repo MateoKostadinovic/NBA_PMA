@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +31,7 @@ public class RecyclerViewStandingsAdapter extends RecyclerView.Adapter<RecyclerV
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_layout_west, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_layout_standings, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -45,7 +44,7 @@ public class RecyclerViewStandingsAdapter extends RecyclerView.Adapter<RecyclerV
         viewHolder.textViewGB.setText(standingsModelsList.get(i).getTeamGamesBehind());
         viewHolder.textViewPCT.setText(standingsModelsList.get(i).getTeamWinPctV2());
 
-        viewHolder.customLayoutWest.setOnClickListener(new View.OnClickListener() {
+        viewHolder.customLayoutStandings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"onClick: clicked on: " + standingsModelsList.get(i).getTeamName());
@@ -68,7 +67,7 @@ public class RecyclerViewStandingsAdapter extends RecyclerView.Adapter<RecyclerV
         TextView textViewGB;
         TextView textViewPCT;
 
-        ConstraintLayout customLayoutWest;
+        ConstraintLayout customLayoutStandings;
 
         public ViewHolder(@NonNull View itemView)
         {
@@ -79,7 +78,7 @@ public class RecyclerViewStandingsAdapter extends RecyclerView.Adapter<RecyclerV
             textViewGB = itemView.findViewById(R.id.textViewGB);
             textViewPCT = itemView.findViewById(R.id.textViewPCT);
 
-            customLayoutWest = itemView.findViewById(R.id.custom_layout_west);
+            customLayoutStandings = itemView.findViewById(R.id.custom_layout_standings);
         }
     }
 }

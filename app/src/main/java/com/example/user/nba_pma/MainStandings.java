@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,10 +23,17 @@ import android.widget.TextView;
 import com.example.user.nba_pma.adapter.StandingsFragmentViewPagerAdapter;
 import com.example.user.nba_pma.fragments.EastConFragment;
 import com.example.user.nba_pma.fragments.WestConFragment;
+import com.example.user.nba_pma.models_teams.LeagueTeams;
+import com.example.user.nba_pma.models_teams.TeamsResponse;
+import com.example.user.nba_pma.network.RetrofitManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainStandings extends AppCompatActivity {
     private ViewPager viewPagerStandings;
@@ -40,6 +48,7 @@ public class MainStandings extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPagerStandings);
+
     }
 
     private void setupViewPager(ViewPager viewPager)
