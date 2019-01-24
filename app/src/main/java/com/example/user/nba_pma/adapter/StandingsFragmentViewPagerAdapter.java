@@ -5,8 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.user.nba_pma.fragments.EastConFragment;
-import com.example.user.nba_pma.fragments.WestConFragment;
+import com.example.user.nba_pma.fragments.StandingsConFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +36,11 @@ public class StandingsFragmentViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         if(dataType == 1)
         {
-            fragment = EastConFragment.newInstance();
+            fragment = StandingsConFragment.newInstance(StandingsConFragment.CONFERENCE_EAST);
         }
         else if(dataType == 2)
         {
-            fragment = WestConFragment.newInstance();
+            fragment = StandingsConFragment.newInstance(StandingsConFragment.CONFERENCE_WEST);
         }
         else
         {

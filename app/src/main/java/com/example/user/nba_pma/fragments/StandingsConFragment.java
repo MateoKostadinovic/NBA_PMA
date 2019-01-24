@@ -15,12 +15,9 @@ import android.widget.TextView;
 import com.example.user.nba_pma.R;
 import com.example.user.nba_pma.adapter.RecyclerViewStandingsAdapter;
 import com.example.user.nba_pma.models.StandingsModel;
-import com.example.user.nba_pma.models_standings.Conference;
-import com.example.user.nba_pma.models_standings.East;
 import com.example.user.nba_pma.models_standings.League;
-import com.example.user.nba_pma.models_standings.Standard;
+import com.example.user.nba_pma.models_standings.Standings;
 import com.example.user.nba_pma.models_standings.StandingsResponse;
-import com.example.user.nba_pma.models_standings.West;
 import com.example.user.nba_pma.models_teams.LeagueTeams;
 import com.example.user.nba_pma.models_teams.Team;
 import com.example.user.nba_pma.models_teams.TeamsResponse;
@@ -32,16 +29,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-    public class EastConFragment extends Fragment {
-    public static EastConFragment newInstance() {
+    public class StandingsConFragment extends Fragment {
+
+        public static int CONFERENCE_EAST=0;
+        public static int CONFERENCE_WEST=1;
+        private static  String EXTRA_CONFERENCE_TYPE = "conf_type";
+
+    public static StandingsConFragment newInstance(int conferenceType) {
         
         Bundle args = new Bundle();
-        
-        EastConFragment fragment = new EastConFragment();
+        args.putInt(EXTRA_CONFERENCE_TYPE,conferenceType);
+        StandingsConFragment fragment = new StandingsConFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
+        int conferenceType = CONFERENCE_EAST;
 
         TextView textViewEast;
         ArrayList<Team> teamsStandard = new ArrayList<>();
@@ -50,7 +53,7 @@ import retrofit2.Response;
         ArrayList<Team> teamsUtah = new ArrayList<>();
         ArrayList<Team> teamsVegas = new ArrayList<>();
 
-        ArrayList<East> eastStandings = new ArrayList<>();
+        ArrayList<Standings> standings = new ArrayList<>();
 
         LeagueTeams leagueTeams;
         League league;
@@ -59,13 +62,22 @@ import retrofit2.Response;
         ArrayList<StandingsModel> standingsModelsList = new ArrayList<>();
 
         RecyclerView recyclerView;
-    @Nullable
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            if(getArguments() != null)
+            {
+                conferenceType = getArguments().getInt(EXTRA_CONFERENCE_TYPE);
+            }
+        }
+
+        @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        final View view=inflater.inflate(R.layout.fragment_east_con,container,false);
+        final View view=inflater.inflate(R.layout.fragment_standings_con,container,false);
 
-        Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
 
         Call<TeamsResponse> callResponseTeams = RetrofitManager.getInstance().getApi().getTeamsLeague();
         callResponseTeams.enqueue(new Callback<TeamsResponse>() {
@@ -133,53 +145,32 @@ import retrofit2.Response;
         {
             return;
         }
-        eastStandings = league.getStandard().getConference().getEast();
+        if(conferenceType == CONFERENCE_EAST)
+        {
+            standings = league.getStandard().getConference().getEast();
+        }
+        else
+        {
+            standings = league.getStandard().getConference().getWest();
+        }
+
         teamsStandard = leagueTeams.getStandardTeams();
         teamsAfrica = leagueTeams.getAfrica();
         teamsSacramento = leagueTeams.getSacramento();
         teamsUtah = leagueTeams.getUtah();
         teamsVegas = leagueTeams.getVegas();
 
-        for(East east : eastStandings) {
-            Log.i("EAST_ID: ",east.getTeamId());
+        for(Standings oStandings : standings) {
             for (Team standard : teamsStandard) {
-                if (east.getTeamId().equals(standard.getTeamId())) {
-                    Log.i("STANDARD_FULL_NAME: ",standard.getFullName());
-                    standingsModel = new StandingsModel(standard.getTeamId(), standard.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
+                if (oStandings.getTeamId().equals(standard.getTeamId())) {
+                    standingsModel = new StandingsModel(standard.getTeamId(), standard.getFullName(), oStandings.getWin(), oStandings.getLoss(), oStandings.getWinPctV2(), oStandings.getGamesBehind());
                     standingsModelsList.add(standingsModel);
-                }
-            }
-            for (Team africa : teamsAfrica) {
-                if (east.getTeamId().equals(africa.getTeamId())) {
-                    standingsModel = new StandingsModel(africa.getTeamId(), africa.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
-                    standingsModelsList.add(standingsModel);
-                }
-            }
-            for (Team sacramento : teamsSacramento) {
-                if (east.getTeamId().equals(sacramento.getTeamId())) {
-                    standingsModel = new StandingsModel(sacramento.getTeamId(), sacramento.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
-                    standingsModelsList.add(standingsModel);
-                }
-            }
-            for (Team utah : teamsUtah) {
-                if (east.getTeamId().equals(utah.getTeamId())) {
-                    standingsModel = new StandingsModel(utah.getTeamId(), utah.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
-                    standingsModelsList.add(standingsModel);
-                }
-            }
-            for (Team vegas : teamsVegas) {
-                if (east.getTeamId().equals(vegas.getTeamId())) {
-                    standingsModel = new StandingsModel(vegas.getTeamId(), vegas.getFullName(), east.getWin(), east.getLoss(), east.getWinPctV2(), east.getGamesBehind());
-                    standingsModelsList.add(standingsModel);
+                    Log.i("TEAM_NAME: ",standingsModel.getTeamName());
                 }
             }
             Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
         }
-        /*for (StandingsModel standings : standingsModelsList)
-        {
-            Log.i("Name: ", standings.getTeamName());
-        }*/
-        //Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
+
         recyclerView = view.findViewById(R.id.recycler_view_east);
         RecyclerViewStandingsAdapter adapter = new RecyclerViewStandingsAdapter(getContext(), standingsModelsList);
         recyclerView.setAdapter(adapter);

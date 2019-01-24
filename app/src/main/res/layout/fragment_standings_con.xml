@@ -30,7 +30,7 @@
         app:layout_constraintStart_toEndOf="@id/textViewTimHeader"
         app:layout_constraintEnd_toStartOf="@id/textViewLHeader"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="50dp"
+        android:paddingStart="110dp"
         android:layout_marginTop="20dp" />
 
     <TextView

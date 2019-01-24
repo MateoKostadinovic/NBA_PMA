@@ -3,22 +3,22 @@ package com.example.user.nba_pma.models_standings;
 import java.util.ArrayList;
 
 public class Conference {
-    public ArrayList<East> east;
-    public ArrayList<West> west;
+    public ArrayList<Standings> east;
+    public ArrayList<Standings> west;
 
-    public ArrayList<East> getEast() {
+    public ArrayList<Standings> getEast() {
         return east;
     }
 
-    public ArrayList<West> getWest() {
+    public ArrayList<Standings> getWest() {
         return west;
     }
 
-    public void setEast(ArrayList<East> east) {
+    public void setEast(ArrayList<Standings> east) {
         this.east = east;
     }
 
-    public void setWest(ArrayList<West> west) {
+    public void setWest(ArrayList<Standings> west) {
         this.west = west;
     }
 }
