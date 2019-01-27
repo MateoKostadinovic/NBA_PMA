@@ -1,6 +1,8 @@
 package com.example.user.nba_pma.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.user.nba_pma.ClubActivity;
+import com.example.user.nba_pma.MainStandings;
 import com.example.user.nba_pma.R;
+import com.example.user.nba_pma.fragments.StandingsConFragment;
 import com.example.user.nba_pma.models.StandingsModel;
 
 import java.util.ArrayList;
@@ -19,6 +24,7 @@ import java.util.ArrayList;
 public class RecyclerViewStandingsAdapter extends RecyclerView.Adapter<RecyclerViewStandingsAdapter.ViewHolder>{
 
     private static final String TAG = "TEST";
+
 
     public ArrayList<StandingsModel> standingsModelsList = new ArrayList<>();
     private Context mContext;
@@ -50,6 +56,14 @@ public class RecyclerViewStandingsAdapter extends RecyclerView.Adapter<RecyclerV
                 Log.d(TAG,"onClick: clicked on: " + standingsModelsList.get(i).getTeamName());
 
                 Toast.makeText(mContext, standingsModelsList.get(i).getTeamId(), Toast.LENGTH_LONG).show();
+
+                Intent intent= new Intent(mContext, ClubActivity.class);
+                /*Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("array_team", standingsModelsList);
+                intent.putExtras(bundle);*/
+
+                intent.putExtra("team_id", standingsModelsList.get(i).getTeamId());
+                mContext.startActivity(intent);
             }
         });
     }

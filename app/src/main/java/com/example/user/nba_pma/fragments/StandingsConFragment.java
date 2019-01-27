@@ -171,7 +171,7 @@ import retrofit2.Response;
             Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
         }
 
-        recyclerView = view.findViewById(R.id.recycler_view_east);
+        recyclerView = view.findViewById(R.id.recycler_view_standings);
         RecyclerViewStandingsAdapter adapter = new RecyclerViewStandingsAdapter(getContext(), standingsModelsList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

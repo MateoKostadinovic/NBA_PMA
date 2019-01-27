@@ -1,8 +1,11 @@
 package com.example.user.nba_pma.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class StandingsModel {
+public class StandingsModel implements Parcelable {
     public String TeamId;
     public String TeamName;
     public String TeamWin;
@@ -19,6 +22,27 @@ public class StandingsModel {
         TeamWinPctV2 = teamWinPctV2;
         TeamGamesBehind = teamGamesBehind;
     }
+
+    protected StandingsModel(Parcel in) {
+        TeamId = in.readString();
+        TeamName = in.readString();
+        TeamWin = in.readString();
+        TeamLoss = in.readString();
+        TeamWinPctV2 = in.readString();
+        TeamGamesBehind = in.readString();
+    }
+
+    public static final Creator<StandingsModel> CREATOR = new Creator<StandingsModel>() {
+        @Override
+        public StandingsModel createFromParcel(Parcel in) {
+            return new StandingsModel(in);
+        }
+
+        @Override
+        public StandingsModel[] newArray(int size) {
+            return new StandingsModel[size];
+        }
+    };
 
     public String getTeamId() {
         return TeamId;
@@ -66,5 +90,16 @@ public class StandingsModel {
 
     public void setTeamGamesBehind(String teamGamesBehind) {
         TeamGamesBehind = teamGamesBehind;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(TeamId);
+        dest.writeString(TeamName);
     }
 }

@@ -17,6 +17,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ClubActivity"
+            android:label="@string/title_activity_club"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".MainStandings"
             android:label="@string/title_activity_main_standings"
             android:theme="@style/AppTheme.NoActionBar">
