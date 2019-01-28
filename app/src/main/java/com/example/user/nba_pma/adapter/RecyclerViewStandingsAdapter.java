@@ -63,6 +63,7 @@ public class RecyclerViewStandingsAdapter extends RecyclerView.Adapter<RecyclerV
                 intent.putExtras(bundle);*/
 
                 intent.putExtra("team_id", standingsModelsList.get(i).getTeamId());
+                intent.putExtra("team_name", standingsModelsList.get(i).getTeamName());
                 mContext.startActivity(intent);
             }
         });

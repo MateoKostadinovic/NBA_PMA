@@ -1,10 +1,14 @@
 package com.example.user.nba_pma;
 
+import android.media.Image;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 
 import com.example.user.nba_pma.adapter.StandingsFragmentViewPagerAdapter;
 import com.example.user.nba_pma.fragments.StandingsConFragment;
@@ -15,7 +19,7 @@ import java.util.List;
 
 public class MainStandings extends AppCompatActivity {
     private ViewPager viewPagerStandings;
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,12 @@ public class MainStandings extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPagerStandings);
+
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.nba_png);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);*/
 
     }
 

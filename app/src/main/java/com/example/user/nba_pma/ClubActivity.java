@@ -32,6 +32,7 @@ import java.util.List;
 
 public class ClubActivity extends AppCompatActivity {
     private ViewPager viewPagerClub;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,13 @@ public class ClubActivity extends AppCompatActivity {
         setContentView(R.layout.activity_club);
 
         viewPagerClub = findViewById(R.id.viewPagerClub);
+        toolbar = findViewById(R.id.toolbar);
         setupViewPager(viewPagerClub);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPagerClub);
+
+        toolbar.setTitle(this.getIntent().getExtras().getString("team_name"));
 
         if (savedInstanceState == null) {
             // During initial setup, plug in the details fragment.
