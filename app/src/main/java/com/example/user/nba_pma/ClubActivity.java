@@ -49,8 +49,11 @@ public class ClubActivity extends AppCompatActivity {
         toolbar.setTitle(this.getIntent().getExtras().getString("team_name"));
 
         if (savedInstanceState == null) {
-            ClubGamesFragment details = new ClubGamesFragment();
-            details.setArguments(getIntent().getExtras());
+            ClubGamesFragment detailsClubGames = new ClubGamesFragment();
+            detailsClubGames.setArguments(getIntent().getExtras());
+
+            ClubPlayersFragment detailsClubPlayers = new ClubPlayersFragment();
+            detailsClubPlayers.setArguments(getIntent().getExtras());
         }
     }
 

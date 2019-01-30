@@ -55,13 +55,9 @@ public class RecyclerViewStandingsAdapter extends RecyclerView.Adapter<RecyclerV
             public void onClick(View v) {
                 Log.d(TAG,"onClick: clicked on: " + standingsModelsList.get(i).getTeamName());
 
-                Toast.makeText(mContext, standingsModelsList.get(i).getTeamId(), Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, standingsModelsList.get(i).getTeamName(), Toast.LENGTH_LONG).show();
 
                 Intent intent= new Intent(mContext, ClubActivity.class);
-                /*Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("array_team", standingsModelsList);
-                intent.putExtras(bundle);*/
-
                 intent.putExtra("team_id", standingsModelsList.get(i).getTeamId());
                 intent.putExtra("team_name", standingsModelsList.get(i).getTeamName());
                 mContext.startActivity(intent);
