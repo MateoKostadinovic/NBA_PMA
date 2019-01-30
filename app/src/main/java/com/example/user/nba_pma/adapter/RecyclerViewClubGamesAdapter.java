@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,12 +39,13 @@ public class RecyclerViewClubGamesAdapter extends RecyclerView.Adapter<RecyclerV
     public RecyclerViewClubGamesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_layout_club_games, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
+
         return viewHolder;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewClubGamesAdapter.ViewHolder viewHolder, final int i) {
+        viewHolder.setIsRecyclable(false); // pomaze kod podebljavanja pobjednika, odnosno ne poziva dva put metode na isti view.
         if(clubGamesModelList.get(i).getsTeamHScore().equals("") || clubGamesModelList.get(i).getsTeamVScore().equals(""))
         {
             String sTeamHScore = "-";
@@ -57,18 +60,24 @@ public class RecyclerViewClubGamesAdapter extends RecyclerView.Adapter<RecyclerV
         {
             if((Integer.parseInt(clubGamesModelList.get(i).getsTeamHScore())) > (Integer.parseInt(clubGamesModelList.get(i).getsTeamVScore())))
             {
-                viewHolder.textViewTeamHNaziv.setTypeface(null, Typeface.BOLD);
-                viewHolder.textViewTeamHScore.setTypeface(null, Typeface.BOLD);
+                if((viewHolder.textViewTeamHNaziv.getTypeface().getStyle() & Typeface.BOLD)==0 || (viewHolder.textViewTeamHScore.getTypeface().getStyle() & Typeface.BOLD)==0)
+                {
+                    viewHolder.textViewTeamHNaziv.setTypeface(null, Typeface.BOLD);
+                    viewHolder.textViewTeamHScore.setTypeface(null, Typeface.BOLD);
+                }
 
                 viewHolder.textViewTeamHNaziv.setText(clubGamesModelList.get(i).getsTeamHName());
                 viewHolder.textViewTeamHScore.setText(clubGamesModelList.get(i).getsTeamHScore());
                 viewHolder.textViewTeamVNaziv.setText(clubGamesModelList.get(i).getsTeamVName());
                 viewHolder.textViewTeamVScore.setText(clubGamesModelList.get(i).getsTeamVScore());
             }
-            else if((Integer.parseInt(clubGamesModelList.get(i).getsTeamHScore())) < (Integer.parseInt(clubGamesModelList.get(i).getsTeamVScore())))
+            else if((Integer.parseInt(clubGamesModelList.get(i).getsTeamVScore())) > (Integer.parseInt(clubGamesModelList.get(i).getsTeamHScore())))
             {
-                viewHolder.textViewTeamVNaziv.setTypeface(null, Typeface.BOLD);
-                viewHolder.textViewTeamVScore.setTypeface(null, Typeface.BOLD);
+                if((viewHolder.textViewTeamVNaziv.getTypeface().getStyle() & Typeface.BOLD)==0 || (viewHolder.textViewTeamVScore.getTypeface().getStyle() & Typeface.BOLD)==0)
+                {
+                    viewHolder.textViewTeamVNaziv.setTypeface(null, Typeface.BOLD);
+                    viewHolder.textViewTeamVScore.setTypeface(null, Typeface.BOLD);
+                }
 
                 viewHolder.textViewTeamHNaziv.setText(clubGamesModelList.get(i).getsTeamHName());
                 viewHolder.textViewTeamHScore.setText(clubGamesModelList.get(i).getsTeamHScore());

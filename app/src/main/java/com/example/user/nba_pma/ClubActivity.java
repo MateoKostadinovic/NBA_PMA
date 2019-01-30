@@ -49,11 +49,8 @@ public class ClubActivity extends AppCompatActivity {
         toolbar.setTitle(this.getIntent().getExtras().getString("team_name"));
 
         if (savedInstanceState == null) {
-            // During initial setup, plug in the details fragment.
             ClubGamesFragment details = new ClubGamesFragment();
             details.setArguments(getIntent().getExtras());
-            getSupportFragmentManager().beginTransaction().add(
-                    android.R.id.content, details).commit();
         }
     }
 
