@@ -1,8 +1,10 @@
 package com.example.user.nba_pma.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +27,14 @@ import com.example.user.nba_pma.models_teams.Team;
 import com.example.user.nba_pma.models_teams.TeamsResponse;
 import com.example.user.nba_pma.network.RetrofitManager;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -109,6 +118,7 @@ public class ClubGamesFragment  extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     void setUpData(LeagueTeams leagueTeams, LeagueGames leagueGames, View view)
     {
         if(leagueGames == null || leagueTeams == null)
@@ -122,6 +132,23 @@ public class ClubGamesFragment  extends Fragment {
         for(StandardGames oStandardGames : standardGames) {
             TeamGames oTeamH = oStandardGames.gethTeam();
             TeamGames oTeamV = oStandardGames.getvTeam();
+
+            String sStartingDate = oStandardGames.getStartTimeUTC();
+            String sNewDate = "";
+            String sDate = "";
+            sNewDate = sStartingDate.substring(0, sStartingDate.length() - 5);
+            sNewDate += "Z";
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            try
+            {
+                Date date = format.parse(sNewDate);
+                sDate = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(date);
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+            }
 
             String sTeamHName="";
             String sTeamHScore="";
@@ -138,10 +165,8 @@ public class ClubGamesFragment  extends Fragment {
                     sTeamVScore = oTeamV.getScore();
                 }
             }
-            clubGamesModel = new ClubGamesModel(sTeamVName, sTeamHName, sTeamVScore, sTeamHScore);
+            clubGamesModel = new ClubGamesModel(sTeamVName, sTeamHName, sTeamVScore, sTeamHScore, sDate);
             clubGamesModelList.add(clubGamesModel);
-
-            Log.d(getClass().getName(), String.format("value = %d", clubGamesModelList.size()));
         }
 
         recyclerView = view.findViewById(R.id.recycler_view_club_games);

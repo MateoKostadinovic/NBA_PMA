@@ -9,4 +9,5 @@
     <string name="standings">Standings</string>
     <string name="east">Eastern Conference</string>
     <string name="title_activity_club">ClubActivity</string>
+    <string name="title_activity_player">PlayerActivity</string>
 </resources>

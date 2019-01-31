@@ -6,17 +6,20 @@ public class StandardPlayers {
     @SerializedName("firstName")
     public String firstNamePlayer;
     @SerializedName("lastName")
-    public String lastNamePlayerM;
+    public String lastNamePlayer;
     @SerializedName("personId")
     public String personIdPlayer;
     @SerializedName("jersey")
     public String jerseyPlayer;
+    @SerializedName("pos")
+    public String positionPlayer;
 
-    public StandardPlayers(String firstNamePlayer, String lastNamePlayerM, String personIdPlayer, String jerseyPlayer) {
+    public StandardPlayers(String firstNamePlayer, String lastNamePlayer, String personIdPlayer, String jerseyPlayer, String positionPlayer) {
         this.firstNamePlayer = firstNamePlayer;
-        this.lastNamePlayerM = lastNamePlayerM;
+        this.lastNamePlayer = lastNamePlayer;
         this.personIdPlayer = personIdPlayer;
         this.jerseyPlayer = jerseyPlayer;
+        this.positionPlayer = positionPlayer;
     }
 
     public String getFirstNamePlayer() {
@@ -27,12 +30,12 @@ public class StandardPlayers {
         this.firstNamePlayer = firstNamePlayer;
     }
 
-    public String getLastNamePlayerM() {
-        return lastNamePlayerM;
+    public String getLastNamePlayer() {
+        return lastNamePlayer;
     }
 
     public void setLastNamePlayerM(String lastNamePlayerM) {
-        this.lastNamePlayerM = lastNamePlayerM;
+        this.lastNamePlayer = lastNamePlayerM;
     }
 
     public String getPersonIdPlayer() {
@@ -49,5 +52,13 @@ public class StandardPlayers {
 
     public void setJerseyPlayer(String jerseyPlayer) {
         this.jerseyPlayer = jerseyPlayer;
+    }
+
+    public String getPositionPlayer() {
+        return positionPlayer;
+    }
+
+    public void setPositionPlayer(String positionPlayer) {
+        this.positionPlayer = positionPlayer;
     }
 }

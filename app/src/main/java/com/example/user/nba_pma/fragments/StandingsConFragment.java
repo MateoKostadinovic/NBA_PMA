@@ -165,10 +165,9 @@ import retrofit2.Response;
                 if (oStandings.getTeamId().equals(standard.getTeamId())) {
                     standingsModel = new StandingsModel(standard.getTeamId(), standard.getFullName(), oStandings.getWin(), oStandings.getLoss(), oStandings.getWinPctV2(), oStandings.getGamesBehind());
                     standingsModelsList.add(standingsModel);
-                    Log.i("TEAM_NAME: ",standingsModel.getTeamName());
                 }
             }
-            Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
+            //Log.d(getClass().getName(), String.format("value = %d", standingsModelsList.size()));
         }
 
         recyclerView = view.findViewById(R.id.recycler_view_standings);

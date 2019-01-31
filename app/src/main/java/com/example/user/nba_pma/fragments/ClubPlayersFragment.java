@@ -5,12 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.nba_pma.R;
+import com.example.user.nba_pma.adapter.RecyclerViewClubPlayersAdapter;
 import com.example.user.nba_pma.models_club_players.ClubPlayer;
 import com.example.user.nba_pma.models_club_players.ClubPlayersResponse;
 import com.example.user.nba_pma.models_club_players.LeagueClubPlayers;
@@ -46,6 +48,8 @@ public class ClubPlayersFragment extends Fragment {
 
     StandardPlayers standardPlayersModel;
     ArrayList<StandardPlayers> standardPlayersModelList = new ArrayList<>();
+
+    RecyclerView recyclerView;
 
     @Nullable
     @Override
@@ -117,16 +121,15 @@ public class ClubPlayersFragment extends Fragment {
         for(ClubPlayer oClubPlayer : clubPlayers) {
             for (StandardPlayers players : standardPlayers) {
                 if (oClubPlayer.getsClubPlayerId().equals(players.getPersonIdPlayer())) {
-                    standardPlayersModel = new StandardPlayers(players.getFirstNamePlayer(), players.getLastNamePlayerM(), players.getPersonIdPlayer(), players.getJerseyPlayer());
+                    standardPlayersModel = new StandardPlayers(players.getFirstNamePlayer(), players.getLastNamePlayer(), players.getPersonIdPlayer(), players.getJerseyPlayer(), players.getPositionPlayer());
                     standardPlayersModelList.add(standardPlayersModel);
                 }
             }
-            Log.d(getClass().getName(), String.format("value = %d", standardPlayersModelList.size()));
         }
 
-        /*recyclerView = view.findViewById(R.id.recycler_view_club_games);
-        RecyclerViewClubGamesAdapter adapter = new RecyclerViewClubGamesAdapter(getContext(), clubGamesModelList);
+        recyclerView = view.findViewById(R.id.recycler_view_club_players);
+        RecyclerViewClubPlayersAdapter adapter = new RecyclerViewClubPlayersAdapter(getContext(), standardPlayersModelList);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*/
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

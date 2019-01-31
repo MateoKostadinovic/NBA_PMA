@@ -28,14 +28,12 @@ public class MainStandings extends AppCompatActivity {
         viewPagerStandings = findViewById(R.id.viewPagerStandings);
         setupViewPager(viewPagerStandings);
 
+        toolbar = findViewById(R.id.toolbar);
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPagerStandings);
-
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.nba_png);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);*/
+        toolbar.setNavigationIcon(R.mipmap.nba_logo_icon);
 
     }
 

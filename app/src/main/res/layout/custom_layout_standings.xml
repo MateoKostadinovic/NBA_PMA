@@ -10,7 +10,6 @@
         android:id="@+id/textViewTim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tim"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,48 +20,48 @@
         android:id="@+id/textViewW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="W"
         android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toStartOf="@id/textViewL"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="165dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="25dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="100dp" />
 
     <TextView
         android:id="@+id/textViewL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="L"
         android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintStart_toEndOf="@id/textViewW"
-        app:layout_constraintEnd_toStartOf="@id/textViewGB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginEnd="100dp" />
 
     <TextView
         android:id="@+id/textViewGB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GB"
         android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintStart_toEndOf="@id/textViewL"
-        app:layout_constraintEnd_toStartOf="@id/textViewPCT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginEnd="60dp" />
 
 
     <TextView
         android:id="@+id/textViewPCT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PCT"
         android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintStart_toEndOf="@id/textViewGB"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="330dp"
+        android:layout_marginEnd="10dp"/>
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.user.nba_pma.network;
 
 import com.example.user.nba_pma.models_games.GamesResponse;
 import com.example.user.nba_pma.models_club_players.ClubPlayersResponse;
+import com.example.user.nba_pma.models_player_stats.PlayerStatsResponse;
 import com.example.user.nba_pma.models_players.PlayersResponse;
 import com.example.user.nba_pma.models_standings.StandingsResponse;
 import com.example.user.nba_pma.models_teams.TeamsResponse;
@@ -25,4 +26,7 @@ public interface NbaApi {
 
     @GET("prod/v1/2018/players.json")
     Call<PlayersResponse> getPlayers();
+
+    @GET("prod/v1/2018/players/{personId}_profile.json")
+    Call<PlayerStatsResponse> getPlayerStats(@Path("personId") int id);
 }

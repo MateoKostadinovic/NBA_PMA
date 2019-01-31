@@ -47,6 +47,8 @@ public class ClubActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPagerClub);
 
         toolbar.setTitle(this.getIntent().getExtras().getString("team_name"));
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.mipmap.nba_logo_icon);
 
         if (savedInstanceState == null) {
             ClubGamesFragment detailsClubGames = new ClubGamesFragment();

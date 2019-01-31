@@ -55,6 +55,7 @@ public class RecyclerViewClubGamesAdapter extends RecyclerView.Adapter<RecyclerV
             viewHolder.textViewTeamHScore.setText(sTeamHScore);
             viewHolder.textViewTeamVNaziv.setText(clubGamesModelList.get(i).getsTeamVName());
             viewHolder.textViewTeamVScore.setText(sTeamVScore);
+            viewHolder.textViewGameDate.setText(clubGamesModelList.get(i).getsDate());
         }
         else
         {
@@ -70,6 +71,7 @@ public class RecyclerViewClubGamesAdapter extends RecyclerView.Adapter<RecyclerV
                 viewHolder.textViewTeamHScore.setText(clubGamesModelList.get(i).getsTeamHScore());
                 viewHolder.textViewTeamVNaziv.setText(clubGamesModelList.get(i).getsTeamVName());
                 viewHolder.textViewTeamVScore.setText(clubGamesModelList.get(i).getsTeamVScore());
+                viewHolder.textViewGameDate.setText(clubGamesModelList.get(i).getsDate());
             }
             else if((Integer.parseInt(clubGamesModelList.get(i).getsTeamVScore())) > (Integer.parseInt(clubGamesModelList.get(i).getsTeamHScore())))
             {
@@ -83,6 +85,7 @@ public class RecyclerViewClubGamesAdapter extends RecyclerView.Adapter<RecyclerV
                 viewHolder.textViewTeamHScore.setText(clubGamesModelList.get(i).getsTeamHScore());
                 viewHolder.textViewTeamVNaziv.setText(clubGamesModelList.get(i).getsTeamVName());
                 viewHolder.textViewTeamVScore.setText(clubGamesModelList.get(i).getsTeamVScore());
+                viewHolder.textViewGameDate.setText(clubGamesModelList.get(i).getsDate());
             }
             else
             {
@@ -90,6 +93,7 @@ public class RecyclerViewClubGamesAdapter extends RecyclerView.Adapter<RecyclerV
                 viewHolder.textViewTeamHScore.setText(clubGamesModelList.get(i).getsTeamHScore());
                 viewHolder.textViewTeamVNaziv.setText(clubGamesModelList.get(i).getsTeamVName());
                 viewHolder.textViewTeamVScore.setText(clubGamesModelList.get(i).getsTeamVScore());
+                viewHolder.textViewGameDate.setText(clubGamesModelList.get(i).getsDate());
             }
         }
     }
@@ -105,6 +109,7 @@ public class RecyclerViewClubGamesAdapter extends RecyclerView.Adapter<RecyclerV
         TextView textViewTeamHScore;
         TextView textViewTeamVNaziv;
         TextView textViewTeamVScore;
+        TextView textViewGameDate;
 
         ConstraintLayout customLayoutClubGames;
 
@@ -115,6 +120,7 @@ public class RecyclerViewClubGamesAdapter extends RecyclerView.Adapter<RecyclerV
             textViewTeamHScore = itemView.findViewById(R.id.textViewTeamHScore);
             textViewTeamVNaziv = itemView.findViewById(R.id.textViewTeamVNaziv);
             textViewTeamVScore = itemView.findViewById(R.id.textViewTeamVScore);
+            textViewGameDate = itemView.findViewById(R.id.textViewGameDate);
 
             customLayoutClubGames = itemView.findViewById(R.id.custom_layout_club_games);
         }

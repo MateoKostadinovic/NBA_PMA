@@ -5,6 +5,15 @@ public class ClubGamesModel {
     public String sTeamHName;
     public String sTeamVScore;
     public String sTeamHScore;
+    public String sDate;
+
+    public String getsDate() {
+        return sDate;
+    }
+
+    public void setsDate(String sDate) {
+        this.sDate = sDate;
+    }
 
     public String getsTeamVName() {
         return sTeamVName;
@@ -38,10 +47,11 @@ public class ClubGamesModel {
         this.sTeamHScore = sTeamHScore;
     }
 
-    public ClubGamesModel(String sTeamVName, String sTeamHName, String sTeamVScore, String sTeamHScore) {
+    public ClubGamesModel(String sTeamVName, String sTeamHName, String sTeamVScore, String sTeamHScore, String sDate) {
         this.sTeamVName = sTeamVName;
         this.sTeamHName = sTeamHName;
         this.sTeamVScore = sTeamVScore;
         this.sTeamHScore = sTeamHScore;
+        this.sDate = sDate;
     }
 }
